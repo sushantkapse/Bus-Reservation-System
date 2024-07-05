@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}Book Bus{% endblock %}
+{% block content %}
+<div class="container">
+    <h2 class="mt-4">Book Bus: {{ bus.bus_no }}</h2>
+    <form id="bookingForm" method="post" onsubmit="return confirmBooking()">
+        {% csrf_token %}
+        <input type="hidden" name="bus_id" value="{{ bus.bus_id }}">
+        <input type="hidden" name="seat_price" value="{{ bus.seat_price }}">
+        <p>Bus Number: {{ bus.bus_no }}</p>
+        <p>Start Point: {{ bus.start_point }}</p>
+        <p>Destination: {{ bus.destination }}</p>
+        <p>Seat Price: {{ bus.seat_price }}</p>
+        <div class="form-group">
+            <label for="seats">Number of Seats:</label>
+            <input type="number" class="form-control" id="seats" name="seats" min="1" max="{{ bus.capacity }}" required>
+        </div>
+        <div class="form-group">
+            <label>Total Amount:</label>
+            <p id="totalAmount">$0.00</p>
+        </div>
+        <button type="submit" class="btn btn-primary">Confirm Booking</button>
+    </form>
+</div>
+
+<script>
+    // Function to calculate total amount based on selected seats and seat price
+    function calculateTotal() {
+        var seats = document.getElementById('seats').value;
+        var seatPrice = parseFloat("{{ bus.seat_price }}");
+        var total = seats * seatPrice;
+        document.getElementById('totalAmount').innerText = '$' + total.toFixed(2);
+    }
+
+    // Event listener to update total amount when seats input changes
+    document.getElementById('seats').addEventListener('input', calculateTotal);
+
+    // Confirmation function
+    function confirmBooking() {
+        var seats = document.getElementById('seats').value;
+        var confirmation = confirm("Do you want to book " + seats + " seats?");
+        return confirmation;
+    }
+</script>
+{% endblock %}

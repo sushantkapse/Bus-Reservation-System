@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}Manage Users{% endblock %}
+{% block content %}
+<div class="container">
+    <h2 class="mt-4">Manage Users</h2>
+    <form class="form-inline my-4">
+        <div class="form-group">
+            <label for="userIdSearch" class="sr-only">User ID</label>
+            <input type="text" class="form-control" id="userIdSearch" name="user_id" placeholder="Search by User ID">
+        </div>
+        <button type="submit" class="btn btn-primary ml-2">Search</button>
+        <a href="{% url 'admin_view_users' %}" class="btn btn-secondary ml-2">All Users</a>
+    </form>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Username</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.first_name }}</td>
+                <td>{{ user.last_name }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    <a href="{% url 'update_user' user.id %}" class="btn btn-warning">Edit</a>
+                    <a href="{% url 'delete_user' user.id %}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'add_user' %}" class="btn btn-primary">Add User</a>
+</div>
+{% endblock %}

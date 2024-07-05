@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Booking Confirmation{% endblock %}
+{% block content %}
+<div class="container">
+    <h2 class="mt-4">Booking Confirmation</h2>
+    <p>Your booking for bus {{ booking.bus.bus_no }} from {{ booking.bus.start_point }} to {{ booking.bus.destination }} has been confirmed.</p>
+    <p>Number of Seats: {{ booking.seats }}</p>
+    <p>Total Amount: {{ booking.total_amount }}</p>
+    <br>
+    <a href="{% url 'user_search' %}" class="btn btn-secondary">Back to Booking Page</a>
+</div>
+{% endblock %}

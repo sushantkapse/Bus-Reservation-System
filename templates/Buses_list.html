@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<div class="container">
+    <h2 class="mt-4">All Buses</h2>
+
+<!-- Search Form -->
+    <form method="get" action="{% url 'user_search' %}" class="form-inline my-4">
+        <div class="form-group">
+            <label for="startPointSearch" class="sr-only">Starting Point</label>
+            <input type="text" class="form-control" id="startPointSearch" name="start_point" placeholder="Starting Point">
+        </div>
+        <div class="form-group mx-sm-3">
+            <label for="destinationSearch" class="sr-only">Destination</label>
+            <input type="text" class="form-control" id="destinationSearch" name="destination" placeholder="Destination">
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form> 
+
+    <!-- List of Buses -->
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Bus ID</th>
+                <th>Bus Number</th>
+                <th>Capacity</th>
+                <th>Available seats</th>
+                <th>Start Point</th>
+                <th>Destination</th>
+                <th>Seat Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for bus in buses %}
+            <tr>
+                <td>{{ bus.bus_id }}</td>
+                <td>{{ bus.bus_no }}</td>
+                <td>{{ bus.capacity }}</td>
+                <td>{{ bus.available_seats }}</td>
+                <td>{{ bus.start_point }}</td>
+                <td>{{ bus.destination }}</td>
+                <td>{{ bus.seat_price }}</td>
+                <td>
+                    <a href="{% url 'book_bus' bus.bus_id %}" class="btn btn-success">Book</a>
+                </td>
+
+                {% comment %} <a href="{% url 'update_bus' bus.bus_id %}" class="btn btn-warning">Edit</a> {% endcomment %}
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="text-center">No buses found</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

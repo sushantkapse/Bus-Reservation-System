@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Update Bus{% endblock %}
+{% block content %}
+<div class="container">
+    <h2 class="mt-4">Update Bus</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="bus_id">Bus ID</label>
+            <input type="text" class="form-control" id="bus_id" name="bus_id" value="{{ bus.bus_id }}" required>
+        </div>
+        <div class="form-group">
+            <label for="bus_no">Bus Number</label>
+            <input type="text" class="form-control" id="bus_no" name="bus_no" value="{{ bus.bus_no }}" required>
+        </div>
+        <div class="form-group">
+            <label for="bus_capacity">Capacity</label>
+            <input type="number" class="form-control" id="capacity" name="capacity" value="{{ bus.capacity }}" required>
+        </div>
+        <div class="form-group">
+            <label for="start_point">Start Point</label>
+            <input type="text" class="form-control" id="start_point" name="start_point" value="{{ bus.start_point }}" required>
+        </div>
+        <div class="form-group">
+            <label for="destination">Destination</label>
+            <input type="text" class="form-control" id="destination" name="destination" value="{{ bus.destination }}" required>
+        </div>
+        <div class="form-group">
+            <label for="seat_price">Seat Price</label>
+            <input type="text" class="form-control" id="seat_price" name="seat_price" value="{{ bus.seat_price }}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Bus</button>
+    </form>
+    <br>
+    <a href="{% url 'manage_buses' %}" class="btn btn-secondary">Back to Manage Buses</a>
+</div>
+{% endblock %}

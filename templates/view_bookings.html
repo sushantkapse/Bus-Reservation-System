@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Your Bookings | Bus Reservation System{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Your Bookings</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Booking ID</th>
+                <th>Bus</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Starting Point</th>
+                <th>Destination</th>
+                <th>Total Amount</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in bookings %}
+            <tr>
+                <td>{{ booking.id }}</td>
+                <td>{{ booking.bus.bus_id }}</td>
+                <td>{{ booking.booking_date|date:"Y-m-d" }}</td>
+                <td>{{ booking.booking_date|date:"H:i:s" }}</td>
+                <td>{{ booking.bus.start_point }}</td>
+                <td>{{ booking.bus.destination }}</td>
+                <td>{{ booking.total_amount }}</td>
+                <td>
+                    <a href="{% url 'cancel_booking' booking.id %}" class="btn btn-danger btn-sm">Cancel</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8" class="text-center">No bookings found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

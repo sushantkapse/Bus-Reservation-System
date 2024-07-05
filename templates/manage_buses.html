@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}Manage Buses{% endblock %}
+{% block content %}
+<div class="container">
+    <h2 class="mt-4">Manage Buses</h2>
+    <form class="form-inline my-4">
+        <div class="form-group">
+            <label for="busIdSearch" class="sr-only">Bus ID</label>
+            <input type="text" class="form-control" id="busIdSearch" name="bus_id" placeholder="Search by Bus ID">
+        </div>
+        <button type="submit" class="btn btn-primary ml-2">Search</button>
+    </form>
+
+
+
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Bus ID</th>
+                <th>Bus Number</th>
+                <th>Capacity</th>
+                <th>Available Seats</th>
+                <th>Start Point</th>
+                <th>Destination</th>
+                <th>Seat Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for bus in buses %}
+            <tr>
+                <td>{{ bus.bus_id }}</td>
+                <td>{{ bus.bus_no }}</td>
+                <td>{{ bus.capacity }}</td>
+                <td>{{ bus.available_seats }}</td>
+                <td>{{ bus.start_point }}</td>
+                <td>{{ bus.destination }}</td>
+                <td>{{ bus.seat_price }}</td>
+                <td>
+                    <a href="{% url 'update_bus' bus.bus_id %}" class="btn btn-warning">Edit</a>
+                    <a href="{% url 'delete_bus' bus.bus_id %}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'add_bus' %}" class="btn btn-primary">Add Bus</a>
+</div>
+{% endblock %}

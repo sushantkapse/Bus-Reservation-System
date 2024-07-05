@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}All Bookings | Admin{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h2>All Bookings</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Booking ID</th>
+                <th>User</th>
+                <th>Bus ID</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Starting Point</th>
+                <th>Destination</th>
+                <th>Seats</th>
+                <th>Total Amount</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in bookings %}
+            <tr>
+                <td>{{ booking.id }}</td>
+                <td>{{ booking.user.username }}</td>
+                <td>{{ booking.bus.bus_id }}</td>
+                <td>{{ booking.booking_date|date:"Y-m-d" }}</td>
+                <td>{{ booking.booking_date|date:"H:i:s" }}</td>
+                <td>{{ booking.bus.start_point }}</td>
+                <td>{{ booking.bus.destination }}</td>
+                <td>{{ booking.seats }}</td>
+                <td>{{ booking.total_amount }}</td>
+               
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="10" class="text-center">No bookings found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

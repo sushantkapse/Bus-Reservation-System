@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+<div class="container">
+    <h2 class="mt-4">Admin Dashboard</h2>
+    <p>Welcome to the Admin Dashboard. Here you can manage users, bookings, and buses.</p>
+    <hr>
+    <div class="row">
+        <div class="col-md-4">
+            <h3>User Management</h3>
+            <p><a href="{% url 'add_user' %}">Add User</a></p>
+            <p><a href="{% url 'update_user' user.id %}">Update User</a></p>
+            <p><a href="{% url 'delete_user' user.id %}">Delete User</a></p>
+            <p><a href="{% url 'admin_view_users' %}">View User</a></p>
+        </div>
+        <div class="col-md-4">
+            <h3>Booking Management</h3>
+            <p><a href="{% url 'admin_view_bookings' %}">view Booking</a></p>
+        </div>
+        <div class="col-md-4">
+            <h3>Bus Management</h3>
+            {% comment %} <p><a href="#">Add Bus</a></p> {% endcomment %}
+            <p><a href="#">Update Bus</a></p>
+            <p><a href="#">Delete Bus</a></p>
+            <p><a href="{% url 'add_bus' %}">Add Bus</a></p>
+            <p><a href="{% url 'manage_buses' %}">View All Buses</a></p> 
+        </div>
+    </div>
+</div>
+{% endblock %}

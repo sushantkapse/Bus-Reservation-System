@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Search Results{% endblock %}
+{% block content %}
+<div class="container">
+    <h2 class="mt-4">Search Results</h2>
+    {% if bus %}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Bus Number: {{ bus.number }}</h5>
+                <p class="card-text">Capacity: {{ bus.capacity }}</p>
+                <p class="card-text">Start Point: {{ bus.start_point }}</p>
+                <p class="card-text">Destination: {{ bus.destination }}</p>
+                <p class="card-text">Seat Price: {{ bus.seat_price }}</p>
+            </div>
+        </div>
+    {% else %}
+        <p class="text-danger">No bus found with the provided ID.</p>
+    {% endif %}
+    <br>
+    <a href="{% url 'home' %}" class="btn btn-secondary">Back to Home</a>
+</div>
+{% endblock %}

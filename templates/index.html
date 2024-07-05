@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Bus Reservation System{% endblock %}
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">Welcome to Bus Reservation System</h1>
+    <p class="lead">Book your bus tickets hassle-free!</p>
+    <hr class="my-4">
+    <p>Here you can describe the features and benefits of your system.</p>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">Login</a>
+        <a class="btn btn-secondary btn-lg" href="{% url 'signup' %}" role="button">Sign Up</a>
+    </p>
+</div>
+{% endblock %}

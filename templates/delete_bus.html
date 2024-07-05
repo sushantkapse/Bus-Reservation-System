@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Delete Bus{% endblock %}
+{% block content %}
+<div class="container">
+    <h2 class="mt-4">Delete Bus</h2>
+    <p>Are you sure you want to delete the bus with ID <strong>{{ bus.bus_id }}</strong>?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete Bus</button>
+        <a href="{% url 'manage_buses' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
